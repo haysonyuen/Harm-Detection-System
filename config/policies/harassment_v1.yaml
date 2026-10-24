@@ -1,0 +1,69 @@
+policy_id: harassment_rubric
+version: harassment_v1
+title: Independent simplified harassment detection rubric
+disclaimer: >-
+  Independent simplified harassment detection rubric inspired by published X policies.
+  Not official X enforcement guidance.
+effective_date: "2026-10-23"
+references:
+  - name: X Abuse and harassment policy
+    url: https://help.x.com/en/rules-and-policies/abusive-behavior
+    accessed: "2026-10-23"
+  - name: X Violent content policy
+    url: https://help.x.com/en/rules-and-policies/violent-content
+    accessed: "2026-10-23"
+adaptation_notes:
+  - Reduced to two detection categories (H, T) plus an uncertainty state (U).
+  - Account-level, repeat-behaviour and coordination criteria from the source policies are out of scope
+    because single-comment classification cannot observe them.
+  - Category definitions are paraphrased for a detection rubric; they are not the source policy text.
+categories:
+  H:
+    name: Harassment-related behavior
+    description: >-
+      Potentially malicious or abusive conduct directed toward a person, including degrading or
+      intimidating language.
+    indicators:
+      - Direct degrading personal attacks.
+      - Malicious humiliation or intimidation.
+      - Calls for others to target someone with abuse.
+      - Abusive comments directly aimed at a person.
+    exclusions:
+      - Criticism of ideas, institutions, or conduct.
+      - General disagreement.
+      - Reporting or condemning abusive language.
+      - Quoted content without endorsement.
+      - Consensual joking when context establishes that interpretation.
+    note: Not every insult is necessarily a confirmed policy violation.
+  T:
+    name: Threatening harassment
+    description: Potentially threatening language involving physical harm toward a person.
+    priority: higher evaluation priority than H
+    indicators:
+      - Credible or explicit threats of violence.
+      - Statements of intent to physically harm a target.
+      - Encouragement to physically attack a person.
+      - Contextually threatening implied physical harm.
+    exclusions:
+      - Quotation of a threat for reporting or condemnation.
+      - Fictional or clearly metaphorical language.
+      - Explicitly non-threatening contexts established by the input.
+  U:
+    name: Uncertain or context-limited
+    description: >-
+      Cases where available context is insufficient to confidently assess possible harmful intent.
+      This is an uncertainty state, not an enforcement category.
+context_sufficiency_guidance: >-
+  Context is sufficient when the comment, plus any supplied parent comment and target context, allows a
+  reader to judge whether the language is abusive or threatening toward a person. Context is insufficient
+  when the interpretation depends on unavailable information such as sarcasm cues, in-group banter, the
+  identity of an ambiguous referent, or prior conversation.
+limitations:
+  - Single-comment classification cannot observe repeated targeting over time.
+  - Historical relationships between participants are unknown.
+  - Prior user violations are unknown.
+  - Broader account coordination cannot be detected.
+  - Whether content was welcomed by the target cannot be established.
+  - Sarcasm, coded threats, and cultural nuance are not reliably interpretable.
+change_notes:
+  - "harassment_v1 (2026-10-23): initial rubric."

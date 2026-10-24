@@ -1,0 +1,21 @@
+version: routing_v1
+description: >-
+  Initial deterministic routing rules (PRD §8.2). Threshold values are conservative engineering
+  placeholders for offline UI operation. They are UNTUNED and have not been optimized on any benchmark.
+tuning_status: untuned_placeholder
+thresholds:
+  threat_priority: 0.5
+  harassment_standard: 0.5
+  targeting: 0.5
+  context_sufficiency: 0.5
+  uncertain_risk: 0.3
+require_targeting_for_standard: true
+context_rule_risk_signals:
+  - abusive_behavior
+  - physical_threat
+notes:
+  - "R-ERR-01: missing or invalid inference data -> non-success status (never No Flag)."
+  - "R-PRI-01: physical_threat >= threat_priority -> Priority Review (targeting not required)."
+  - "R-STD-01: abusive_behavior >= harassment_standard and targeted_individual >= targeting -> Standard Review."
+  - "R-CTX-01: max(risk signals) >= uncertain_risk and context_sufficient < context_sufficiency -> Standard Review."
+  - "R-NF-01: otherwise No Flag."

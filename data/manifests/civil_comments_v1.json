@@ -1,0 +1,155 @@
+{
+  "manifest_version": "civil_comments_v1",
+  "dataset_name": "google/civil_comments",
+  "dataset_url": "https://huggingface.co/datasets/google/civil_comments",
+  "revision": "f2970eb3a55777454c94069077cc8d9b5866312d",
+  "license": "CC0-1.0 (per Hugging Face dataset card metadata)",
+  "prepared_at": "2026-10-23T23:46:12+00:00",
+  "source_splits": {
+    "development": "validation",
+    "holdout": "test"
+  },
+  "source_file_sha256": {
+    "validation-00000-of-00001.parquet": "2e0eb65474e7e1290df8689fc93eea783160c898c09ae15382c0a9662367bd03",
+    "test-00000-of-00001.parquet": "410f803ff161e7c4ba005db7de5b444cac413f4861bf056b0fd69d670d75aa08"
+  },
+  "sampling": {
+    "method": "stratified development sample + simple random holdout from a separate split",
+    "plan": {
+      "seed": 20261023,
+      "threat_enriched": 100,
+      "insult_enriched": 100,
+      "borderline": 50,
+      "representative": 350,
+      "holdout": 400,
+      "positive_threshold": 0.5,
+      "borderline_low": 0.3,
+      "max_text_length": 5000
+    },
+    "random_seed": 20261023,
+    "strata_definitions": {
+      "threat_enriched": "threat >= positive_threshold",
+      "insult_enriched": "insult >= positive_threshold and threat < positive_threshold",
+      "borderline": "not previously selected and (borderline_low <= threat < positive_threshold or borderline_low <= insult < positive_threshold or (threat >= positive_threshold and insult >= positive_threshold))",
+      "representative": "uniform random sample of remaining eligible records"
+    },
+    "fallback_policy": "If a stratum has fewer eligible records than requested, all eligible records are taken and the shortfall is NOT reallocated; actual counts are disclosed in the manifest.",
+    "development_strata_counts": {
+      "threat_enriched": {
+        "requested": 100,
+        "eligible_pool": 222,
+        "selected": 100
+      },
+      "insult_enriched": {
+        "requested": 100,
+        "eligible_pool": 5703,
+        "selected": 100
+      },
+      "borderline": {
+        "requested": 50,
+        "eligible_pool": 5633,
+        "selected": 50
+      },
+      "representative": {
+        "requested": 350,
+        "eligible_pool": 96505,
+        "selected": 350
+      }
+    },
+    "holdout_counts": {
+      "requested": 400,
+      "selected": 400,
+      "removed_exact_overlap_with_dev": 0,
+      "removed_near_overlap_with_dev": 0
+    }
+  },
+  "eligibility": {
+    "development_source": {
+      "total": 97320,
+      "empty_text": 0,
+      "too_long": 0,
+      "exact_duplicates": 565,
+      "eligible": 96755
+    },
+    "holdout_source": {
+      "total": 97320,
+      "empty_text": 0,
+      "too_long": 0,
+      "exact_duplicates": 573,
+      "eligible": 96747
+    },
+    "rules": [
+      "text non-empty after trimming",
+      "text length <= 5000 characters",
+      "exact duplicates (normalized content hash) within a split dropped, first kept",
+      "language assumed English per dataset card (no per-record language field)"
+    ]
+  },
+  "label_mapping_version": "civil_comments_proxy_v1",
+  "selected_record_count": {
+    "development": 600,
+    "representative_dev": 350,
+    "holdout": 400
+  },
+  "class_prevalence": {
+    "development_all": {
+      "n": 600,
+      "threat_positive": 100,
+      "threat_prevalence": 0.166667,
+      "insult_positive": 141,
+      "insult_prevalence": 0.235,
+      "toxicity_positive": 237,
+      "toxicity_prevalence": 0.395,
+      "identity_attack_positive": 10,
+      "identity_attack_prevalence": 0.016667
+    },
+    "representative_dev": {
+      "n": 350,
+      "threat_positive": 0,
+      "threat_prevalence": 0.0,
+      "insult_positive": 22,
+      "insult_prevalence": 0.062857,
+      "toxicity_positive": 27,
+      "toxicity_prevalence": 0.077143,
+      "identity_attack_positive": 0,
+      "identity_attack_prevalence": 0.0
+    },
+    "holdout": {
+      "n": 400,
+      "threat_positive": 4,
+      "threat_prevalence": 0.01,
+      "insult_positive": 30,
+      "insult_prevalence": 0.075,
+      "toxicity_positive": 37,
+      "toxicity_prevalence": 0.0925,
+      "identity_attack_positive": 0,
+      "identity_attack_prevalence": 0.0
+    }
+  },
+  "duplicate_removal": {
+    "within_split_exact": {
+      "development_source": 565,
+      "holdout_source": 573
+    },
+    "holdout_vs_development": {
+      "requested": 400,
+      "selected": 400,
+      "removed_exact_overlap_with_dev": 0,
+      "removed_near_overlap_with_dev": 0
+    },
+    "near_duplicate_method": "word-token-set Jaccard >= 0.9 (lowercased, punctuation stripped, texts with >= 4 tokens), candidate pairs blocked on shared tokens",
+    "final_leakage_check": {
+      "shared_source_ids": [],
+      "exact_overlaps": [],
+      "near_overlaps": [],
+      "near_duplicate_method": "word-token-set Jaccard >= 0.9 (lowercased, punctuation stripped, texts with >= 4 tokens), candidate pairs blocked on shared tokens",
+      "clean": true
+    }
+  },
+  "reference_label_note": "Reference labels are published crowd-annotation fractions. Proxy labels derived from them are not confirmed X policy violations.",
+  "output_files": {
+    "development_v1.jsonl": "e2321c8446263b99905d4f78633dd429d35a2e733f5f4097767da79f29eecfda",
+    "representative_dev_v1.jsonl": "c2f857500eec7b4660176fb04ad766d588847a8b4d8f34971967d634052941bf",
+    "holdout_v1.jsonl": "8736ee07505bd217413609a9aeea0045eba5f147b56e5e1264a07309f5c10d4d"
+  }
+}

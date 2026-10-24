@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Local data (large downloads, generated databases, generated samples)
+data/raw/
+data/*.sqlite
+data/*.sqlite-*
+data/processed/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/

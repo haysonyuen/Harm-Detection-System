@@ -1,0 +1,22 @@
+version: civil_comments_proxy_v1
+dataset: google/civil_comments
+description: >-
+  Proxy mapping from Civil Comments crowd-annotation fractions to binary proxy labels.
+  Proxy labels are NOT confirmed X harassment violations.
+binarization_threshold: 0.5
+proxies:
+  threat_proxy: threat
+  insult_proxy: insult
+  toxicity_proxy: toxicity
+  identity_attack_proxy: identity_attack
+primary_proxies:
+  - threat_proxy
+  - insult_proxy
+reference_routing:
+  priority_review: threat_proxy
+  standard_review: insult_proxy
+notes:
+  - Source scores are the fraction of annotators who applied the label; a value >= 0.5 is binarized as positive.
+  - Original numeric scores are preserved alongside binary proxies for sensitivity analysis.
+  - Categories are multilabel; threat and insult may both be positive.
+  - "Reference routing: threat proxy -> priority_review; else insult proxy -> standard_review; else no_flag."
