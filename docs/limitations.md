@@ -23,12 +23,16 @@
 ## Integrations (status at delivery)
 
 * **TypeSafe Jev:** the adapter is built against the official OpenAPI contract and contract-tested with mocks.
-  **Live verification is pending** until `TYPESAFE_API_KEY` is configured and
-  `scripts/validate_integrations.py --jev --confirm` is run.
+  **Live contract verified on 2026-10-27** (`scripts/validate_integrations.py --jev --confirm`, result in
+  `docs/integration_validation.json`): `/v1/models` listed `jev-latest` and `jev-preview`; one System One call
+  with `jev-latest` resolved to `jev-1.14.0` and returned all 4 `noul` answers; an unknown model ID returned
+  HTTP 400 "Unknown model", which mapped to `unsupported_model`. This verifies the API contract only. No live
+  benchmark results exist yet, so detection quality is unmeasured.
 * **OpenAI Moderation and GPT-5.4 mini:** built on the official SDK (v3.x) and tested against SDK response
   types with injected fakes. **Live verification is pending** (no `OPENAI_API_KEY` configured).
 * Error mapping for an unsupported Jev model ID (404, or 400/422 mentioning `model`) is inferred from the
-  documented error table. The live probe in `validate_integrations.py` checks it.
+  documented error table. The 2026-10-27 live probe confirmed the 400 case. The 404 and 422 branches remain
+  untested against the live API.
 * GPT-5.4 mini pricing in `config/pricing/pricing_v1.yaml` came from third-party aggregators and has not been
   verified against OpenAI's pricing page. Cost controls are local estimates, not billing caps.
 

@@ -1,0 +1,48 @@
+{
+  "typesafe_jev": {
+    "provider": "typesafe_jev",
+    "requested_model": "jev-latest",
+    "models_endpoint": {
+      "ok": true,
+      "names": [
+        "jev-latest",
+        "jev-preview"
+      ]
+    },
+    "systemone": {
+      "status": "success",
+      "resolved_model": "jev-1.14.0",
+      "signals": {
+        "targeted_individual": 0.67,
+        "abusive_behavior": 0.01,
+        "physical_threat": 0.01,
+        "context_sufficient": 0.84
+      },
+      "usage": {
+        "input_tokens": 858,
+        "output_tokens": 81,
+        "attempts": 1
+      },
+      "latency_ms": 170,
+      "error": null,
+      "answer_keys": [
+        "abusive_behavior",
+        "context_sufficient",
+        "physical_threat",
+        "targeted_individual"
+      ],
+      "answer_types": [
+        "noul"
+      ]
+    },
+    "unsupported_model_probe": {
+      "status": "failure",
+      "error": {
+        "code": "unsupported_model",
+        "message": "HTTP 400: {'error_type': 'api_usage_error', 'message': 'Unknown model: jev-does-not-exist'}"
+      }
+    },
+    "status": "verified",
+    "checked_at": "2026-10-27T23:43:44+00:00"
+  }
+}
